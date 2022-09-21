@@ -1,5 +1,6 @@
 import React from 'react'
 import "./Sidebar.css"
+import ChatIcon from '@mui/icons-material/Chat';
 
 const sidebar = () => {
   return (
@@ -7,7 +8,7 @@ const sidebar = () => {
         sidebar
         <div className='sidebar_header'>
             <div className='sidebar_headerRight'>
-                
+                <ChatIcon />
             </div>
         </div>
     </div>
