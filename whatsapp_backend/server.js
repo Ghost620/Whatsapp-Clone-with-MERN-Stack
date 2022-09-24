@@ -16,7 +16,9 @@ const conn_url = 'mongodb+srv://ghost620:Prisoner620123@cluster0.4bcjedd.mongodb
 //     useNewUrlParser: true,
 //     useCreateIndex: true 
 // })
-mongoose.connect(conn_url)
+mongoose.connect(conn_url, {useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true })
+.then(console.log("mongodb connected successfully...."))
+.catch(err =>console.log(err))
 
 // API Routes
 
