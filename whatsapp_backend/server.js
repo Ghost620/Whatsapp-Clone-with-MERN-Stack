@@ -1,15 +1,13 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import Messages from "./dbMessages.js"
+import Pusher from "pusher"
 
 // app config
 
 const app = express()
 const port = process.env.PORT || 9000
 
-
-
-const Pusher = require("pusher");
 
 const pusher = new Pusher({
   appId: "1481958",
@@ -34,9 +32,18 @@ const conn_url = 'mongodb+srv://ghost620:Prisoner620123@cluster0.4bcjedd.mongodb
 
 mongoose.connect(conn_url)
 
-// mongoose.connect(conn_url, {useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true })
-// .then(console.log("mongodb connected successfully...."))
-// .catch(err =>console.log(err))
+const db = mongoose.connection
+
+db.once("open", () => {
+    console.log("DB Connected")
+
+    const msgCollection = db.collection("messagecontents")
+    const changeStream = msgCollection.watch()
+
+    changeStream.on('change', (change) => {
+        console.log('sth new', change)
+    })
+})
 
 // API Routes
 
