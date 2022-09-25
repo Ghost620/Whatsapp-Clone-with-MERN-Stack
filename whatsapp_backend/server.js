@@ -7,6 +7,24 @@ import Messages from "./dbMessages.js"
 const app = express()
 const port = process.env.PORT || 9000
 
+
+
+const Pusher = require("pusher");
+
+const pusher = new Pusher({
+  appId: "1481958",
+  key: "f67bd1478faa505418f5",
+  secret: "632ee87542beb08b444a",
+  cluster: "eu",
+  useTLS: true
+});
+
+pusher.trigger("my-channel", "my-event", {
+  message: "hello world"
+});
+
+
+
 // middleware
 app.use(express.json())
 
