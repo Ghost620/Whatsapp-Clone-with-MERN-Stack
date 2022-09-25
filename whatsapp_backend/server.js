@@ -12,7 +12,7 @@ app.use(express.json())
 
 // DB config
 
-const conn_url = 'mongodb+srv://ghost620:Prisoner620123@cluster0.4bcjedd.mongodb.net/?retryWrites=true&w=majority'
+const conn_url = 'mongodb+srv://ghost620:Prisoner620123@cluster0.4bcjedd.mongodb.net/dbwhatsapp?retryWrites=true&w=majority'
 
 mongoose.connect(conn_url)
 
