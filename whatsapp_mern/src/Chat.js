@@ -1,11 +1,27 @@
-import React from 'react'
+import React, {useState} from 'react'
 import "./Chat.css"
 import { Avatar, IconButton } from '@mui/material';
 import { SearchOutlined, MoreVert, AttachFile } from '@mui/icons-material'
 import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
 import MicIcon from '@mui/icons-material/Mic';
+import axios from "./axios"
 
 const Chat = ( {messages} ) => {
+
+  const [input, setInput] = useState('')
+  const sendMessage = (e) => {
+    e.preventDefault();
+
+    axios.post('/messages/new', {
+      message: input,
+      name: 'DEMO',
+      timestamp: 'now',
+      received: false
+    });
+
+    setInput('')
+  }
+
   return (
     <div className='chat'>
 
@@ -39,7 +55,7 @@ const Chat = ( {messages} ) => {
 
           {messages.map((message) => (
 
-            <p className= {`chat_message ${message.received && "chat_receiver"}`}>
+            <p className= {`chat_message ${!message.received && "chat_receiver"}`}>
             
             <span className='chat_name'> {message.name} </span>
             {message.message}
@@ -55,8 +71,8 @@ const Chat = ( {messages} ) => {
 
           <EmojiEmotionsIcon />
           <form>
-            <input placeholder='Type a message...' type='text'/>
-            <button type='submit'>Send a message</button>
+            <input value={input} onChange={e => setInput(e.target.value)} placeholder='Type a message...' type='text'/>
+            <button onClick={sendMessage} type='submit'>Send a message</button>
           </form>
           <MicIcon />
 
