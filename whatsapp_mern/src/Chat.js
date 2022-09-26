@@ -5,7 +5,7 @@ import { SearchOutlined, MoreVert, AttachFile } from '@mui/icons-material'
 import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
 import MicIcon from '@mui/icons-material/Mic';
 
-const Chat = () => {
+const Chat = ( {messages} ) => {
   return (
     <div className='chat'>
 
@@ -37,29 +37,17 @@ const Chat = () => {
 
         <div className='chat_body'>
 
-          <p className='chat_message'>
+          {messages.map((message) => (
+
+            <p className= {`chat_message ${message.received && "chat_receiver"}`}>
             
-            <span className='chat_name'> Ghost </span>
-            This is a message
-            <span className='chat_timestamp'> {new Date().toUTCString()} </span>
+            <span className='chat_name'> {message.name} </span>
+            {message.message}
+            <span className='chat_timestamp'> {message.timestamp} </span>
 
-          </p>
+            </p>
 
-          <p className='chat_message chat_receiver'>
-            
-            <span className='chat_name'> Sonny </span>
-            This is a message
-            <span className='chat_timestamp'> {new Date().toUTCString()} </span>
-
-          </p>
-
-          <p className='chat_message'>
-            
-            <span className='chat_name'> Ghost </span>
-            This is a message
-            <span className='chat_timestamp'> {new Date().toUTCString()} </span>
-
-          </p>
+          ))}
 
         </div>
 
