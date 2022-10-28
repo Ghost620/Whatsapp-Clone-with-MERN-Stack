@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import Sidebar from './sidebar';
 import Chat from './Chat';
 
 function App() {
+
+  useEffect(() => {
+    
+  }, [])
+
   return (
     <div className="app">
       
