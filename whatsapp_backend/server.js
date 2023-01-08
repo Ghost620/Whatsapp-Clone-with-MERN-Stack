@@ -40,13 +40,15 @@ db.once("open", () => {
     const changeStream = msgCollection.watch()
 
     changeStream.on('change', (change) => {
-        console.log(change)
+        //console.log(change)
 
         if (change.operationType === "insert") {
             const messageDetails = change.fullDocument
             pusher.trigger("messages", "inserted", {
                 name: messageDetails.name,
-                message: messageDetails.message
+                message: messageDetails.message,
+                timestamp:  messageDetails.timestamp,
+                received: messageDetails.received
             })
         } else {
             console.log("Error triggering Pusher !")
@@ -56,7 +58,7 @@ db.once("open", () => {
 
 // API Routes
 
-app.get('/', (req, res) => res.status(200).send('hello world'))
+app.get('/', (req, res) => res.status(200).send('WELCOME !'))
 
 app.get('/messages/sync', (req, res) => {
 
