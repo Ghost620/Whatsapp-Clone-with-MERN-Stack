@@ -7,7 +7,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { SearchOutlined } from '@mui/icons-material'
 import SidebarChat from './SidebarChat';
 
-const sidebar = () => {
+const Sidebar = () => {
   return (
     <div className='sidebar'>
 
@@ -49,4 +49,4 @@ const sidebar = () => {
   )
 }
 
-export default sidebar
+export default Sidebar

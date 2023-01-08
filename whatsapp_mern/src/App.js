@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import './App.css';
-import Sidebar from './sidebar';
+import Sidebar from './Sidebar';
 import Chat from './Chat';
 
 function App() {
